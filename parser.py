@@ -122,6 +122,14 @@ def p_param_list_items(p):
     else:
         p[0] = [p[1]]
 
+def p_param_list_error(p):
+    '''param_list_items : error'''
+    syntax_errors.append(
+        f"[ERROR SINTÁCTICO] Parámetro mal formado en declaración "
+        f"de función, línea {p.lineno(1)}"
+    )
+    p[0] = []
+
 def p_param(p):
     '''param : type ID'''
     p[0] = f"{p[2]}:{p[1]}"
