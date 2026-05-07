@@ -323,6 +323,14 @@ def p_arg_list_error(p):
     )
     p[0] = []
 
+def p_block_error(p):
+    '''if_statement   : IF L_PAREN error R_PAREN L_BRACKET statement_list R_BRACKET
+       while_statement : WHILE L_PAREN error R_PAREN L_BRACKET statement_list R_BRACKET'''
+    syntax_errors.append(
+        f"[ERROR SINTÁCTICO] Condición inválida en línea {p.lineno(1)}"
+    )
+    p[0] = ('ERROR_BLOCK',)
+
 # instanciación
 def p_instantiation(p):
     '''instantiation : NEW ID L_PAREN arg_list R_PAREN'''
